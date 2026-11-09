@@ -1,0 +1,17 @@
+name: crash-lab
+version: 1.0.0
+description: Deterministic simulated booking failures with an independent state oracle.
+author: Barry Bernie
+kind: standalone
+requires_hermes: ">=0.22.5"
+provides_tools:
+  - crash_start
+  - crash_book
+  - crash_inspect
+  - crash_report
+capabilities:
+  tools:
+    - crash_start
+    - crash_book
+    - crash_inspect
+    - crash_report

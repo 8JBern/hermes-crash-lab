@@ -1,0 +1,247 @@
+[
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "booking_id": null,
+          "warning": "malformed simulated response"
+        }
+      }
+    ],
+    "run_id": "87ac97fd31a7439e82c6c4d0500ddeb6",
+    "scenario": "malformed_response",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 0,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "booking_id": null,
+          "warning": "malformed simulated response"
+        }
+      }
+    ],
+    "run_id": "26dba545ed11405da6fd5776c565b0cd",
+    "scenario": "malformed_response",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 1,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "booking_id": null,
+          "warning": "malformed simulated response"
+        }
+      }
+    ],
+    "run_id": "249aa2cc363d493cb613489c50b64ffc",
+    "scenario": "malformed_response",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 2,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "error": "503 simulated temporary failure",
+          "retryable": true
+        }
+      },
+      {
+        "call": 2,
+        "key": "request-1",
+        "response": {
+          "booking_id": "B1",
+          "status": "confirmed"
+        }
+      }
+    ],
+    "run_id": "7b1327f79a6c48468a1964ff96be1368",
+    "scenario": "temporary_failure",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 0,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "error": "503 simulated temporary failure",
+          "retryable": true
+        }
+      },
+      {
+        "call": 2,
+        "key": "request-1",
+        "response": {
+          "error": "503 simulated temporary failure",
+          "retryable": true
+        }
+      },
+      {
+        "call": 3,
+        "key": "request-1",
+        "response": {
+          "booking_id": "B1",
+          "status": "confirmed"
+        }
+      }
+    ],
+    "run_id": "c5fe9323366c4ec9842465744930a5b7",
+    "scenario": "temporary_failure",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 1,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "error": "503 simulated temporary failure",
+          "retryable": true
+        }
+      },
+      {
+        "call": 2,
+        "key": "request-1",
+        "response": {
+          "booking_id": "B1",
+          "status": "confirmed"
+        }
+      }
+    ],
+    "run_id": "4041034f00244e22a6e028ca6cf699de",
+    "scenario": "temporary_failure",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 2,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "error": "simulated timeout; outcome unknown"
+        }
+      }
+    ],
+    "run_id": "f7b1533c690744f18350b2a482b96001",
+    "scenario": "timeout_after_success",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 0,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "error": "simulated timeout; outcome unknown"
+        }
+      }
+    ],
+    "run_id": "52089c181ab447ce84d12d068d4711ab",
+    "scenario": "timeout_after_success",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 1,
+    "verdict": "PASS"
+  },
+  {
+    "booking_count": 1,
+    "bookings": [
+      {
+        "booking_id": "B1",
+        "idempotency_key": "request-1"
+      }
+    ],
+    "events": [
+      {
+        "call": 1,
+        "key": "request-1",
+        "response": {
+          "error": "simulated timeout; outcome unknown"
+        }
+      }
+    ],
+    "run_id": "5a87a040f1b64cd282ca0354043c99d6",
+    "scenario": "timeout_after_success",
+    "scope": "simulated service state only; agent explanation not evaluated",
+    "seed": 2,
+    "verdict": "PASS"
+  }
+]

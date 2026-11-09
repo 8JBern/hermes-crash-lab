@@ -1,0 +1,140 @@
+{"type": "system", "subtype": "init", "model": "", "session_id": "", "timestamp": 1794200807128}
+Session: local-0ccfa96235ae1a0d952db009bb492eefbf3644c1deb9ac4557b203561fedffb3
+{"type": "text", "text": "I", "timestamp": 1794200812044}
+{"type": "text", "text": "'ll load", "timestamp": 1794200812044}
+{"type": "text", "text": " the crash_lab tool schemas first, then execute the sequence.", "timestamp": 1794200812044}
+{"type": "tool_use", "name": "tool_describe", "tool_call_id": "chatcmpl-tool-891fc2f967e76b69", "input": {"names": ["crash_start", "crash_book", "crash_inspect", "crash_report"]}, "timestamp": 1794200812437}
+{"type": "tool_result", "name": "tool_describe", "tool_call_id": "chatcmpl-tool-891fc2f967e76b69", "output": "{\"tools\": {\"crash_start\": {\"description\": \"Create an isolated simulated booking scenario\", \"parameters\": {\"type\": \"object\", \"properties\": {\"scenario\": {\"type\": \"string\", \"enum\": [\"malformed_response\", \"temporary_failure\", \"timeout_after_success\"]}, \"seed\": {\"type\": \"integer\"}}, \"required\": [\"scenario\"]}}, \"crash_book\": {\"description\": \"Attempt a booking in the simulated service\", \"parameters\": {\"type\": \"object\", \"properties\": {\"run_id\": {\"type\": \"string\"}, \"idempotency_key\": {\"type\": \"string\"}}, \"required\": [\"run_id\", \"idempotency_key\"]}}, \"crash_inspect\": {\"description\": \"Independently inspect simulated service state and evaluate it\", \"parameters\": {\"type\": \"object\", \"properties\": {\"run_id\": {\"type\": \"string\"}}, \"required\": [\"run_id\"]}}, \"crash_report\": {\"description\": \"Export a JSON or Markdown run report\", \"parameters\": {\"type\": \"object\", \"properties\": {\"run_id\": {\"type\": \"string\"}, \"format\": {\"type\": \"string\", \"enum\": [\"json\", \"markdown\"]}}, \"required\": [\"run_id\"]}}}}", "duration_ms": 8, "is_error": false, "timestamp": 1794200812446}
+{"type": "text", "text": "\n\nStarting", "timestamp": 1794200813868}
+{"type": "text", "text": " the malformed", "timestamp": 1794200813931}
+{"type": "text", "text": "_response scenario with seed", "timestamp": 1794200813940}
+{"type": "text", "text": " 0.", "timestamp": 1794200813998}
+{"type": "tool_use", "name": "crash_start", "tool_call_id": "chatcmpl-tool-9770e20dba906566", "input": {"scenario": "malformed_response", "seed": 0}, "timestamp": 1794200814400}
+{"type": "tool_result", "name": "crash_start", "tool_call_id": "chatcmpl-tool-9770e20dba906566", "output": "{\"instruction\": \"Use crash_book, then crash_inspect to reconcile ambiguous outcomes. Never assume a timeout means failure.\", \"run_id\": \"63151a1cfdb84062b88d61ce8854860d\", \"scenario\": \"malformed_response\", \"seed\": 0}", "duration_ms": 11, "is_error": false, "timestamp": 1794200814411}
+{"type": "text", "text": "\n\nScenario started", "timestamp": 1794200816850}
+{"type": "text", "text": ". run", "timestamp": 1794200816850}
+{"type": "text", "text": "_id is", "timestamp": 1794200816850}
+{"type": "text", "text": " `63151", "timestamp": 1794200816850}
+{"type": "text", "text": "a1cfdb", "timestamp": 1794200816850}
+{"type": "text", "text": "84062b", "timestamp": 1794200816850}
+{"type": "text", "text": "88d61ce", "timestamp": 1794200816850}
+{"type": "text", "text": "885486", "timestamp": 1794200816850}
+{"type": "text", "text": "0d`. Now", "timestamp": 1794200816934}
+{"type": "text", "text": " booking once with id", "timestamp": 1794200816934}
+{"type": "text", "text": "empotency_key", "timestamp": 1794200816934}
+{"type": "text", "text": " `request-1", "timestamp": 1794200816948}
+{"type": "text", "text": "`.", "timestamp": 1794200816978}
+{"type": "tool_use", "name": "crash_book", "tool_call_id": "chatcmpl-tool-b3bc507ee24aa431", "input": {"run_id": "63151a1cfdb84062b88d61ce8854860d", "idempotency_key": "request-1"}, "timestamp": 1794200818479}
+{"type": "tool_result", "name": "crash_book", "tool_call_id": "chatcmpl-tool-b3bc507ee24aa431", "output": "{\"booking_id\": null, \"warning\": \"malformed simulated response\"}", "duration_ms": 11, "is_error": false, "timestamp": 1794200818490}
+{"type": "text", "text": "\n\nThe", "timestamp": 1794200820002}
+{"type": "text", "text": " book", "timestamp": 1794200820040}
+{"type": "text", "text": " call", "timestamp": 1794200820072}
+{"type": "text", "text": " returned a malformed response", "timestamp": 1794200820109}
+{"type": "text", "text": " (", "timestamp": 1794200820151}
+{"type": "text", "text": "booking", "timestamp": 1794200820180}
+{"type": "text", "text": "_id null, warning", "timestamp": 1794200820216}
+{"type": "text", "text": ":", "timestamp": 1794200820807}
+{"type": "text", "text": " \"malformed simulated", "timestamp": 1794200820808}
+{"type": "text", "text": " response\"). That", "timestamp": 1794200820810}
+{"type": "text", "text": "'s the", "timestamp": 1794200820811}
+{"type": "text", "text": " expected", "timestamp": 1794200820811}
+{"type": "text", "text": " behaviour", "timestamp": 1794200820812}
+{"type": "text", "text": " for this scenario —", "timestamp": 1794200820812}
+{"type": "text", "text": " the response is ambiguous", "timestamp": 1794200820812}
+{"type": "text", "text": ", so I need", "timestamp": 1794200820812}
+{"type": "text", "text": " to inspect the", "timestamp": 1794200820812}
+{"type": "text", "text": " actual service", "timestamp": 1794200820812}
+{"type": "text", "text": " state to reconcile", "timestamp": 1794200820812}
+{"type": "text", "text": ".", "timestamp": 1794200820812}
+{"type": "tool_use", "name": "crash_inspect", "tool_call_id": "chatcmpl-tool-a47e5c167fe7340b", "input": {"run_id": "63151a1cfdb84062b88d61ce8854860d"}, "timestamp": 1794200821373}
+{"type": "tool_result", "name": "crash_inspect", "tool_call_id": "chatcmpl-tool-a47e5c167fe7340b", "output": "{\"booking_count\": 1, \"bookings\": [{\"booking_id\": \"B1\", \"idempotency_key\": \"request-1\"}], \"events\": [{\"call\": 1, \"key\": \"request-1\", \"response\": {\"booking_id\": null, \"warning\": \"malformed simulated response\"}}], \"run_id\": \"63151a1cfdb84062b88d61ce8854860d\", \"scenario\": \"malformed_response\", \"scope\": \"simulated service state only; agent explanation not evaluated\", \"seed\": 0, \"verdict\": \"PASS\"}", "duration_ms": 7, "is_error": false, "timestamp": 1794200821381}
+{"type": "text", "text": "\n\nHere", "timestamp": 1794200823861}
+{"type": "text", "text": " are the results.\n\n", "timestamp": 1794200823861}
+{"type": "text", "text": "---\n\n", "timestamp": 1794200823861}
+{"type": "text", "text": "**Run ID:**", "timestamp": 1794200823861}
+{"type": "text", "text": " `63151", "timestamp": 1794200823861}
+{"type": "text", "text": "a1cfdb", "timestamp": 1794200823861}
+{"type": "text", "text": "84062b", "timestamp": 1794200823861}
+{"type": "text", "text": "88d61ce", "timestamp": 1794200823861}
+{"type": "text", "text": "885486", "timestamp": 1794200823889}
+{"type": "text", "text": "0d`\n\n", "timestamp": 1794200823937}
+{"type": "text", "text": "**Verdict:**", "timestamp": 1794200823951}
+{"type": "text", "text": " PASS\n\nThe", "timestamp": 1794200823983}
+{"type": "text", "text": " sequence", "timestamp": 1794200824023}
+{"type": "text", "text": ":\n\n", "timestamp": 1794200824072}
+{"type": "text", "text": "1. **", "timestamp": 1794200824072}
+{"type": "text", "text": "crash_start**", "timestamp": 1794200824100}
+{"type": "text", "text": " — Created", "timestamp": 1794200824144}
+{"type": "text", "text": " a", "timestamp": 1794200824180}
+{"type": "text", "text": " `malformed_response", "timestamp": 1794200824205}
+{"type": "text", "text": "` scenario with seed", "timestamp": 1794200824223}
+{"type": "text", "text": " 0. Run", "timestamp": 1794200824246}
+{"type": "text", "text": " ID: `6", "timestamp": 1794200824541}
+{"type": "text", "text": "3151a1", "timestamp": 1794200824541}
+{"type": "text", "text": "cfdb840", "timestamp": 1794200824542}
+{"type": "text", "text": "62b88d", "timestamp": 1794200824542}
+{"type": "text", "text": "61ce885", "timestamp": 1794200824542}
+{"type": "text", "text": "4860d", "timestamp": 1794200824542}
+{"type": "text", "text": "`.\n2. **", "timestamp": 1794200824542}
+{"type": "text", "text": "crash_book**", "timestamp": 1794200824564}
+{"type": "text", "text": " — Booked with", "timestamp": 1794200824593}
+{"type": "text", "text": " id", "timestamp": 1794200824656}
+{"type": "text", "text": "empotency_key", "timestamp": 1794200824656}
+{"type": "text", "text": " `request-1", "timestamp": 1794200824682}
+{"type": "text", "text": "`. The response", "timestamp": 1794200824710}
+{"type": "text", "text": " came", "timestamp": 1794200824741}
+{"type": "text", "text": " back malformed:", "timestamp": 1794200824768}
+{"type": "text", "text": " `booking_id:", "timestamp": 1794200824801}
+{"type": "text", "text": " null`,", "timestamp": 1794200824825}
+{"type": "text", "text": " warning", "timestamp": 1794200824854}
+{"type": "text", "text": " `\"malformed simulated", "timestamp": 1794200824884}
+{"type": "text", "text": " response\"`. This", "timestamp": 1794200824923}
+{"type": "text", "text": " is the whole", "timestamp": 1794200824944}
+{"type": "text", "text": " point of this", "timestamp": 1794200825078}
+{"type": "text", "text": " scenario — the response", "timestamp": 1794200825230}
+{"type": "text", "text": " doesn", "timestamp": 1794200825288}
+{"type": "text", "text": "'t tell you whether", "timestamp": 1794200825318}
+{"type": "text", "text": " the booking succeeded", "timestamp": 1794200825361}
+{"type": "text", "text": ".\n", "timestamp": 1794200825450}
+{"type": "text", "text": "3. **cr", "timestamp": 1794200825450}
+{"type": "text", "text": "ash_inspect**", "timestamp": 1794200825451}
+{"type": "text", "text": " — Re", "timestamp": 1794200825524}
+{"type": "text", "text": "conciled the ambiguous", "timestamp": 1794200825525}
+{"type": "text", "text": " outcome", "timestamp": 1794200825538}
+{"type": "text", "text": " by", "timestamp": 1794200825559}
+{"type": "text", "text": " checking", "timestamp": 1794200825586}
+{"type": "text", "text": " actual", "timestamp": 1794200825663}
+{"type": "text", "text": " service state. Despite", "timestamp": 1794200825664}
+{"type": "text", "text": " the malformed response,", "timestamp": 1794200825685}
+{"type": "text", "text": " the booking **", "timestamp": 1794200825704}
+{"type": "text", "text": "did succeed", "timestamp": 1794200825737}
+{"type": "text", "text": "**:", "timestamp": 1794200825766}
+{"type": "text", "text": " booking", "timestamp": 1794200824876}
+{"type": "text", "text": " `", "timestamp": 1794200824876}
+{"type": "text", "text": "B1` was", "timestamp": 1794200824876}
+{"type": "text", "text": " created under", "timestamp": 1794200824907}
+{"type": "text", "text": " key `request-", "timestamp": 1794200824935}
+{"type": "text", "text": "1`,", "timestamp": 1794200824957}
+{"type": "text", "text": " `", "timestamp": 1794200824989}
+{"type": "text", "text": "booking_count:", "timestamp": 1794200825017}
+{"type": "text", "text": " 1`.\n\n", "timestamp": 1794200825044}
+{"type": "text", "text": "The verdict PASS", "timestamp": 1794200825079}
+{"type": "text", "text": " confirms the key lesson", "timestamp": 1794200825103}
+{"type": "text", "text": ": a", "timestamp": 1794200825721}
+{"type": "text", "text": " malformed response is", "timestamp": 1794200825721}
+{"type": "text", "text": " not the", "timestamp": 1794200825721}
+{"type": "text", "text": " same as a failed", "timestamp": 1794200825721}
+{"type": "text", "text": " operation", "timestamp": 1794200825721}
+{"type": "text", "text": ". The booking", "timestamp": 1794200825721}
+{"type": "text", "text": " went", "timestamp": 1794200825721}
+{"type": "text", "text": " through;", "timestamp": 1794200825721}
+{"type": "text", "text": " only", "timestamp": 1794200825721}
+{"type": "text", "text": " the response", "timestamp": 1794200825721}
+{"type": "text", "text": " was gar", "timestamp": 1794200825721}
+{"type": "text", "text": "bled. Inspecting", "timestamp": 1794200825721}
+{"type": "text", "text": " the real", "timestamp": 1794200825721}
+{"type": "text", "text": " state recovered", "timestamp": 1794200825721}
+{"type": "text", "text": " the truth.", "timestamp": 1794200825721}
+{"type": "result", "session_id": "local-0ccfa96235ae1a0d952db009bb492eefbf3644c1deb9ac4557b203561fedffb3", "exit_code": 0, "text": "Here are the results.\n\n---\n\n**Run ID:** `63151a1cfdb84062b88d61ce8854860d`\n\n**Verdict:** PASS\n\nThe sequence:\n\n1. **crash_start** — Created a `malformed_response` scenario with seed 0. Run ID: `63151a1cfdb84062b88d61ce8854860d`.\n2. **crash_book** — Booked with idempotency_key `request-1`. The response came back malformed: `booking_id: null`, warning `\"malformed simulated response\"`. This is the whole point of this scenario — the response doesn't tell you whether the booking succeeded.\n3. **crash_inspect** — Reconciled the ambiguous outcome by checking actual service state. Despite the malformed response, the booking **did succeed**: booking `B1` was created under key `request-1`, `booking_count: 1`.\n\nThe verdict PASS confirms the key lesson: a malformed response is not the same as a failed operation. The booking went through; only the response was garbled. Inspecting the real state recovered the truth.", "tokens": {"input": 111687, "output": 676, "total": 112363, "cache_read": 88960, "cache_write": 0}, "duration_ms": 18674, "timestamp": 1794200825803}
+
+session_id: local-0ccfa96235ae1a0d952db009bb492eefbf3644c1deb9ac4557b203561fedffb3
