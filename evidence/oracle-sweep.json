@@ -1,247 +1,525 @@
-[
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "booking_id": null,
-          "warning": "malformed simulated response"
-        }
-      }
-    ],
-    "run_id": "87ac97fd31a7439e82c6c4d0500ddeb6",
-    "scenario": "malformed_response",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 0,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "booking_id": null,
-          "warning": "malformed simulated response"
-        }
-      }
-    ],
-    "run_id": "26dba545ed11405da6fd5776c565b0cd",
-    "scenario": "malformed_response",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 1,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "booking_id": null,
-          "warning": "malformed simulated response"
-        }
-      }
-    ],
-    "run_id": "249aa2cc363d493cb613489c50b64ffc",
-    "scenario": "malformed_response",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 2,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "error": "503 simulated temporary failure",
-          "retryable": true
-        }
-      },
-      {
-        "call": 2,
-        "key": "request-1",
-        "response": {
+{
+  "sweep": [
+    {
+      "allowed_calls": 2,
+      "booking_count": 1,
+      "bookings": [
+        {
           "booking_id": "B1",
-          "status": "confirmed"
+          "idempotency_key": "request-1"
         }
-      }
-    ],
-    "run_id": "7b1327f79a6c48468a1964ff96be1368",
-    "scenario": "temporary_failure",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 0,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "error": "503 simulated temporary failure",
-          "retryable": true
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "booking_id": null,
+            "warning": "malformed simulated response"
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
         }
-      },
-      {
-        "call": 2,
-        "key": "request-1",
-        "response": {
-          "error": "503 simulated temporary failure",
-          "retryable": true
-        }
-      },
-      {
-        "call": 3,
-        "key": "request-1",
-        "response": {
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "4bfb50300dfd47a59525cda98f3f5fad",
+      "scenario": "malformed_response",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 0,
+      "service_confirmed": true,
+      "unnecessary_calls": 2,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 2,
+      "booking_count": 1,
+      "bookings": [
+        {
           "booking_id": "B1",
-          "status": "confirmed"
+          "idempotency_key": "request-1"
         }
-      }
-    ],
-    "run_id": "c5fe9323366c4ec9842465744930a5b7",
-    "scenario": "temporary_failure",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 1,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "error": "503 simulated temporary failure",
-          "retryable": true
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "booking_id": null,
+            "warning": "malformed simulated response"
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
         }
-      },
-      {
-        "call": 2,
-        "key": "request-1",
-        "response": {
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "4fd4e9acd0124fe6b91c4562000209a5",
+      "scenario": "malformed_response",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 1,
+      "service_confirmed": true,
+      "unnecessary_calls": 2,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 2,
+      "booking_count": 1,
+      "bookings": [
+        {
           "booking_id": "B1",
-          "status": "confirmed"
+          "idempotency_key": "request-1"
         }
-      }
-    ],
-    "run_id": "4041034f00244e22a6e028ca6cf699de",
-    "scenario": "temporary_failure",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 2,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "error": "simulated timeout; outcome unknown"
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "booking_id": null,
+            "warning": "malformed simulated response"
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
         }
-      }
-    ],
-    "run_id": "f7b1533c690744f18350b2a482b96001",
-    "scenario": "timeout_after_success",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 0,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "error": "simulated timeout; outcome unknown"
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "00e72060d8e04f5ca5e306cbba26ccb0",
+      "scenario": "malformed_response",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 7,
+      "service_confirmed": true,
+      "unnecessary_calls": 2,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 2,
+      "booking_count": 1,
+      "bookings": [
+        {
+          "booking_id": "B1",
+          "idempotency_key": "request-1"
         }
-      }
-    ],
-    "run_id": "52089c181ab447ce84d12d068d4711ab",
-    "scenario": "timeout_after_success",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 1,
-    "verdict": "PASS"
-  },
-  {
-    "booking_count": 1,
-    "bookings": [
-      {
-        "booking_id": "B1",
-        "idempotency_key": "request-1"
-      }
-    ],
-    "events": [
-      {
-        "call": 1,
-        "key": "request-1",
-        "response": {
-          "error": "simulated timeout; outcome unknown"
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "error": "503 simulated temporary failure",
+            "retryable": true
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
         }
-      }
-    ],
-    "run_id": "5a87a040f1b64cd282ca0354043c99d6",
-    "scenario": "timeout_after_success",
-    "scope": "simulated service state only; agent explanation not evaluated",
-    "seed": 2,
-    "verdict": "PASS"
-  }
-]
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "90635f04881c473e89adea0415a5e5e2",
+      "scenario": "temporary_failure",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 0,
+      "service_confirmed": true,
+      "unnecessary_calls": 2,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 3,
+      "booking_count": 1,
+      "bookings": [
+        {
+          "booking_id": "B1",
+          "idempotency_key": "request-1"
+        }
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "error": "503 simulated temporary failure",
+            "retryable": true
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "error": "503 simulated temporary failure",
+            "retryable": true
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        }
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "82fa47ec53894ddea5f43235faf79032",
+      "scenario": "temporary_failure",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 1,
+      "service_confirmed": true,
+      "unnecessary_calls": 1,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 3,
+      "booking_count": 1,
+      "bookings": [
+        {
+          "booking_id": "B1",
+          "idempotency_key": "request-1"
+        }
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "error": "503 simulated temporary failure",
+            "retryable": true
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "error": "503 simulated temporary failure",
+            "retryable": true
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        }
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "b44a3275103447f2a0e881356ef74ece",
+      "scenario": "temporary_failure",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 7,
+      "service_confirmed": true,
+      "unnecessary_calls": 1,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 2,
+      "booking_count": 1,
+      "bookings": [
+        {
+          "booking_id": "B1",
+          "idempotency_key": "request-1"
+        }
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "error": "simulated timeout; outcome unknown"
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        }
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "64233200185842d19fd0e5ce79f703b8",
+      "scenario": "timeout_after_success",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 0,
+      "service_confirmed": true,
+      "unnecessary_calls": 2,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 2,
+      "booking_count": 1,
+      "bookings": [
+        {
+          "booking_id": "B1",
+          "idempotency_key": "request-1"
+        }
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "error": "simulated timeout; outcome unknown"
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        }
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "3c45fbd3211f43b6b95c9588e2665aa6",
+      "scenario": "timeout_after_success",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 1,
+      "service_confirmed": true,
+      "unnecessary_calls": 2,
+      "verdict": "PASS"
+    },
+    {
+      "allowed_calls": 2,
+      "booking_count": 1,
+      "bookings": [
+        {
+          "booking_id": "B1",
+          "idempotency_key": "request-1"
+        }
+      ],
+      "call_count": 4,
+      "distinct_keys": 1,
+      "events": [
+        {
+          "call": 1,
+          "key": "request-1",
+          "response": {
+            "error": "simulated timeout; outcome unknown"
+          }
+        },
+        {
+          "call": 2,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 3,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        },
+        {
+          "call": 4,
+          "key": "request-1",
+          "response": {
+            "booking_id": "B1",
+            "status": "confirmed"
+          }
+        }
+      ],
+      "excessive_retries": true,
+      "integrity": "verified",
+      "key_changes": 0,
+      "reconciled": true,
+      "retry_count": 4,
+      "run_id": "1524cef40b494243851dacaa0144646a",
+      "scenario": "timeout_after_success",
+      "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated",
+      "seed": 7,
+      "service_confirmed": true,
+      "unnecessary_calls": 2,
+      "verdict": "PASS"
+    }
+  ],
+  "source_sha256___init__": "bc0311cdb0cc9bbbf898e76890e30119b919e56431fc134716220c04dee41eb3",
+  "expected": "every trial: one booking (same key), verdict PASS, integrity verified, excessive_retries true (calls beyond budget)"
+}

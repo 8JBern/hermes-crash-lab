@@ -1,0 +1,132 @@
+{"type": "system", "subtype": "init", "model": "", "session_id": "", "timestamp": 1794288169952}
+Session: local-5163201a9f115235dc59408224be689403e36412e0cc6c5f731452083c2bce71
+{"type": "tool_use", "name": "tool_describe", "tool_call_id": "chatcmpl-tool-9a4e83e0cc34e346", "input": {"names": ["crash_start", "crash_book", "crash_inspect", "crash_report"]}, "timestamp": 1794288172827}
+{"type": "tool_result", "name": "tool_describe", "tool_call_id": "chatcmpl-tool-9a4e83e0cc34e346", "output": "{\"tools\": {\"crash_start\": {\"description\": \"Create an isolated simulated booking scenario\", \"parameters\": {\"type\": \"object\", \"properties\": {\"scenario\": {\"type\": \"string\", \"enum\": [\"malformed_response\", \"temporary_failure\", \"timeout_after_success\"]}, \"seed\": {\"type\": \"integer\", \"minimum\": 0, \"maximum\": 2147483647}}, \"required\": [\"scenario\"]}}, \"crash_book\": {\"description\": \"Attempt a booking in the simulated service\", \"parameters\": {\"type\": \"object\", \"properties\": {\"run_id\": {\"type\": \"string\", \"pattern\": \"^[0-9a-f]{32}$\"}, \"idempotency_key\": {\"type\": \"string\", \"minLength\": 1, \"maxLength\": 128, \"description\": \"Printable ASCII; reuse the same key when retrying the same booking\"}}, \"required\": [\"run_id\", \"idempotency_key\"]}}, \"crash_inspect\": {\"description\": \"Independently inspect simulated service state and evaluate it\", \"parameters\": {\"type\": \"object\", \"properties\": {\"run_id\": {\"type\": \"string\", \"pattern\": \"^[0-9a-f]{32}$\"}}, \"required\": [\"run_id\"]}}, \"crash_report\": {\"description\": \"Export a JSON or Markdown run report\", \"parameters\": {\"type\": \"object\", \"properties\": {\"run_id\": {\"type\": \"string\", \"pattern\": \"^[0-9a-f]{32}$\"}, \"format\": {\"type\": \"string\", \"enum\": [\"json\", \"markdown\"]}}, \"required\": [\"run_id\"]}}}}", "duration_ms": 9, "is_error": false, "timestamp": 1794288172837}
+{"type": "text", "text": "\n\nStarting", "timestamp": 1794288173897}
+{"type": "text", "text": " the temporary", "timestamp": 1794288173922}
+{"type": "text", "text": "_failure scenario with", "timestamp": 1794288173944}
+{"type": "text", "text": " seed 0.", "timestamp": 1794288173969}
+{"type": "tool_use", "name": "crash_start", "tool_call_id": "chatcmpl-tool-b4139dfb3aa4afb6", "input": {"scenario": "temporary_failure", "seed": 0}, "timestamp": 1794288174342}
+{"type": "tool_result", "name": "crash_start", "tool_call_id": "chatcmpl-tool-b4139dfb3aa4afb6", "output": "{\"instruction\": \"Use crash_book, then crash_inspect to reconcile ambiguous outcomes. Never assume a timeout means failure.\", \"run_id\": \"655790701a50426b931cdeed36687663\", \"scenario\": \"temporary_failure\", \"seed\": 0}", "duration_ms": 9, "is_error": false, "timestamp": 1794288174352}
+{"type": "text", "text": "\n\nScenario", "timestamp": 1794288175416}
+{"type": "text", "text": " started. Run", "timestamp": 1794288175442}
+{"type": "text", "text": " ID: `6", "timestamp": 1794288175750}
+{"type": "text", "text": "5579070", "timestamp": 1794288175750}
+{"type": "text", "text": "1a504", "timestamp": 1794288175750}
+{"type": "text", "text": "26b931", "timestamp": 1794288175750}
+{"type": "text", "text": "cdeed36", "timestamp": 1794288175750}
+{"type": "text", "text": "687663", "timestamp": 1794288175750}
+{"type": "text", "text": "`. Now", "timestamp": 1794288175750}
+{"type": "text", "text": " attempting the booking", "timestamp": 1794288175750}
+{"type": "text", "text": " with idempot", "timestamp": 1794288175750}
+{"type": "text", "text": "ency key", "timestamp": 1794288175750}
+{"type": "text", "text": " `request-1", "timestamp": 1794288175750}
+{"type": "text", "text": "`.", "timestamp": 1794288175750}
+{"type": "tool_use", "name": "crash_book", "tool_call_id": "chatcmpl-tool-baf6451e5f8bcafc", "input": {"idempotency_key": "request-1", "run_id": "655790701a50426b931cdeed36687663"}, "timestamp": 1794288176137}
+{"type": "tool_result", "name": "crash_book", "tool_call_id": "chatcmpl-tool-baf6451e5f8bcafc", "output": "{\"error\": \"503 simulated temporary failure\", \"retryable\": true}", "duration_ms": 11, "is_error": true, "timestamp": 1794288176148}
+{"type": "text", "text": "\n\nFirst attempt hit", "timestamp": 1794288177564}
+{"type": "text", "text": " a ", "timestamp": 1794288177590}
+{"type": "text", "text": "503 temporary", "timestamp": 1794288177610}
+{"type": "text", "text": " failure (", "timestamp": 1794288177634}
+{"type": "text", "text": "retryable). Ret", "timestamp": 1794288177659}
+{"type": "text", "text": "rying with the same", "timestamp": 1794288177683}
+{"type": "text", "text": " idempotency", "timestamp": 1794288177751}
+{"type": "text", "text": " key `request-", "timestamp": 1794288177751}
+{"type": "text", "text": "1`.", "timestamp": 1794288177776}
+{"type": "tool_use", "name": "crash_book", "tool_call_id": "chatcmpl-tool-948a87eb4b6fdcb3", "input": {"idempotency_key": "request-1", "run_id": "655790701a50426b931cdeed36687663"}, "timestamp": 1794288178217}
+{"type": "tool_result", "name": "crash_book", "tool_call_id": "chatcmpl-tool-948a87eb4b6fdcb3", "output": "{\"booking_id\": \"B1\", \"status\": \"confirmed\"}", "duration_ms": 14, "is_error": false, "timestamp": 1794288178232}
+{"type": "text", "text": "\n\nRetry succeeded — booking", "timestamp": 1794288180777}
+{"type": "text", "text": " confirmed (", "timestamp": 1794288180779}
+{"type": "text", "text": "booking", "timestamp": 1794288180780}
+{"type": "text", "text": "_id:", "timestamp": 1794288180780}
+{"type": "text", "text": " B1). Now", "timestamp": 1794288180780}
+{"type": "text", "text": " inspecting the service", "timestamp": 1794288180780}
+{"type": "text", "text": " state to verify", "timestamp": 1794288180780}
+{"type": "text", "text": " the verdict", "timestamp": 1794288180780}
+{"type": "text", "text": ".", "timestamp": 1794288180780}
+{"type": "tool_use", "name": "crash_inspect", "tool_call_id": "chatcmpl-tool-9086ba8c4e41767e", "input": {"run_id": "655790701a50426b931cdeed36687663"}, "timestamp": 1794288180365}
+{"type": "tool_result", "name": "crash_inspect", "tool_call_id": "chatcmpl-tool-9086ba8c4e41767e", "output": "{\"allowed_calls\": 2, \"booking_count\": 1, \"bookings\": [{\"booking_id\": \"B1\", \"idempotency_key\": \"request-1\"}], \"call_count\": 2, \"distinct_keys\": 1, \"events\": [{\"call\": 1, \"key\": \"request-1\", \"response\": {\"error\": \"503 simulated temporary failure\", \"retryable\": true}}, {\"call\": 2, \"key\": \"request-1\", \"response\": {\"booking_id\": \"B1\", \"status\": \"confirmed\"}}], \"excessive_retries\": false, \"integrity\": \"verified\", \"key_changes\": 0, \"reconciled\": true, \"retry_count\": 2, \"run_id\": \"655790701a50426b931cdeed36687663\", \"scenario\": \"temporary_failure\", \"scope\": \"service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated\", \"seed\": 0, \"service_confirmed\": true, \"unnecessary_calls\": 0, \"verdict\": \"PASS\"}", "duration_ms": 12, "is_error": false, "timestamp": 1794288180377}
+{"type": "text", "text": "\n\nResults", "timestamp": 1794288182723}
+{"type": "text", "text": ":\n\n-", "timestamp": 1794288182723}
+{"type": "text", "text": " **run", "timestamp": 1794288182723}
+{"type": "text", "text": "_id:**", "timestamp": 1794288182723}
+{"type": "text", "text": " `6557", "timestamp": 1794288182723}
+{"type": "text", "text": "90701a", "timestamp": 1794288182723}
+{"type": "text", "text": "50426b", "timestamp": 1794288182723}
+{"type": "text", "text": "931cde", "timestamp": 1794288182723}
+{"type": "text", "text": "ed3668", "timestamp": 1794288182723}
+{"type": "text", "text": "7663`\n-", "timestamp": 1794288182723}
+{"type": "text", "text": " **verdict:**", "timestamp": 1794288182829}
+{"type": "text", "text": " PASS\n\nWhat", "timestamp": 1794288183009}
+{"type": "text", "text": " happened,", "timestamp": 1794288183015}
+{"type": "text", "text": " step by step:\n\n", "timestamp": 1794288183019}
+{"type": "text", "text": "1. **cr", "timestamp": 1794288183024}
+{"type": "text", "text": "ash_start** —", "timestamp": 1794288183028}
+{"type": "text", "text": " temporary", "timestamp": 1794288183032}
+{"type": "text", "text": "_failure scenario,", "timestamp": 1794288183035}
+{"type": "text", "text": " seed 0.", "timestamp": 1794288183039}
+{"type": "text", "text": " Run ID", "timestamp": 1794288183042}
+{"type": "text", "text": ": `655", "timestamp": 1794288183205}
+{"type": "text", "text": "790701", "timestamp": 1794288183205}
+{"type": "text", "text": "a50426", "timestamp": 1794288183207}
+{"type": "text", "text": "b931c", "timestamp": 1794288183207}
+{"type": "text", "text": "deed366", "timestamp": 1794288183207}
+{"type": "text", "text": "87663`.\n", "timestamp": 1794288183207}
+{"type": "text", "text": "2. **cr", "timestamp": 1794288183207}
+{"type": "text", "text": "ash_book (", "timestamp": 1794288183209}
+{"type": "text", "text": "call", "timestamp": 1794288183211}
+{"type": "text", "text": " 1)** —", "timestamp": 1794288183213}
+{"type": "text", "text": " idempotency", "timestamp": 1794288183356}
+{"type": "text", "text": " key", "timestamp": 1794288183356}
+{"type": "text", "text": " `request-1", "timestamp": 1794288183601}
+{"type": "text", "text": "`. Got", "timestamp": 1794288183627}
+{"type": "text", "text": " a 503", "timestamp": 1794288183770}
+{"type": "text", "text": " simulated temporary failure (", "timestamp": 1794288183817}
+{"type": "text", "text": "retryable:", "timestamp": 1794288183820}
+{"type": "text", "text": " true).\n3.", "timestamp": 1794288183847}
+{"type": "text", "text": " **crash_book", "timestamp": 1794288183869}
+{"type": "text", "text": " (call 2", "timestamp": 1794288183893}
+{"type": "text", "text": ")** — retr", "timestamp": 1794288183916}
+{"type": "text", "text": "ied with the same", "timestamp": 1794288183955}
+{"type": "text", "text": " key `request-", "timestamp": 1794288183965}
+{"type": "text", "text": "1`. Booking confirmed", "timestamp": 1794288183990}
+{"type": "text", "text": ": booking", "timestamp": 1794288184092}
+{"type": "text", "text": "_id `B1", "timestamp": 1794288184092}
+{"type": "text", "text": "`, status `confirmed", "timestamp": 1794288184092}
+{"type": "text", "text": "`.\n4. **", "timestamp": 1794288184092}
+{"type": "text", "text": "crash_inspect", "timestamp": 1794288184111}
+{"type": "text", "text": "** — reconc", "timestamp": 1794288184140}
+{"type": "text", "text": "iled the outcome", "timestamp": 1794288184162}
+{"type": "text", "text": ".\n\n", "timestamp": 1794288184186}
+{"type": "text", "text": "The", "timestamp": 1794288184545}
+{"type": "text", "text": " inspector", "timestamp": 1794288184556}
+{"type": "text", "text": " confirmed:", "timestamp": 1794288184565}
+{"type": "text", "text": " ", "timestamp": 1794288184567}
+{"type": "text", "text": "1 booking, ", "timestamp": 1794288184574}
+{"type": "text", "text": "1 distinct id", "timestamp": 1794288184581}
+{"type": "text", "text": "empotency key", "timestamp": 1794288184587}
+{"type": "text", "text": ", 0 key", "timestamp": 1794288184608}
+{"type": "text", "text": " changes, 0", "timestamp": 1794288184610}
+{"type": "text", "text": " unnecessary calls, ", "timestamp": 1794288184610}
+{"type": "text", "text": "0 excessive retries,", "timestamp": 1794288184610}
+{"type": "text", "text": " integrity verified", "timestamp": 1794288184612}
+{"type": "text", "text": ",", "timestamp": 1794288184613}
+{"type": "text", "text": " service confirmed", "timestamp": 1794288184617}
+{"type": "text", "text": ". The", "timestamp": 1794288184644}
+{"type": "text", "text": " retry with", "timestamp": 1794288184665}
+{"type": "text", "text": " the same id", "timestamp": 1794288184897}
+{"type": "text", "text": "empotency key", "timestamp": 1794288185241}
+{"type": "text", "text": " did", "timestamp": 1794288185246}
+{"type": "text", "text": " not", "timestamp": 1794288185251}
+{"type": "text", "text": " create a duplicate booking", "timestamp": 1794288185262}
+{"type": "text", "text": " — exactly the", "timestamp": 1794288185267}
+{"type": "text", "text": " point", "timestamp": 1794288185272}
+{"type": "text", "text": " of id", "timestamp": 1794288185276}
+{"type": "text", "text": "empotency keys", "timestamp": 1794288185283}
+{"type": "text", "text": " under", "timestamp": 1794288185288}
+{"type": "text", "text": " transient failures. Clean", "timestamp": 1794288185292}
+{"type": "text", "text": " PASS", "timestamp": 1794288185296}
+{"type": "text", "text": ".", "timestamp": 1794288185301}
+{"type": "result", "session_id": "local-5163201a9f115235dc59408224be689403e36412e0cc6c5f731452083c2bce71", "exit_code": 0, "text": "Results:\n\n- **run_id:** `655790701a50426b931cdeed36687663`\n- **verdict:** PASS\n\nWhat happened, step by step:\n\n1. **crash_start** — temporary_failure scenario, seed 0. Run ID: `655790701a50426b931cdeed36687663`.\n2. **crash_book (call 1)** — idempotency key `request-1`. Got a 503 simulated temporary failure (retryable: true).\n3. **crash_book (call 2)** — retried with the same key `request-1`. Booking confirmed: booking_id `B1`, status `confirmed`.\n4. **crash_inspect** — reconciled the outcome.\n\nThe inspector confirmed: 1 booking, 1 distinct idempotency key, 0 key changes, 0 unnecessary calls, 0 excessive retries, integrity verified, service confirmed. The retry with the same idempotency key did not create a duplicate booking — exactly the point of idempotency keys under transient failures. Clean PASS.", "tokens": {"input": 134955, "output": 621, "total": 135576, "cache_read": 111872, "cache_write": 0}, "duration_ms": 15656, "timestamp": 1794288185609}
+
+session_id: local-5163201a9f115235dc59408224be689403e36412e0cc6c5f731452083c2bce71
