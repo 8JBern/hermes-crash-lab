@@ -1,7 +1,14 @@
-# Independent acceptance review — Crash Lab 1.0.0-rc.1
+# Independent review of Crash Lab 1.0.0-rc.1 (SUPERSEDED — see note)
+
+> **Superseded:** this review covers the 1.0.0-rc.1 prototype, before the 1.0.1 maintainer
+> fix and the 1.0.2 independent-audit remediation. It is retained for the project record.
+> Its findings were remediated at the time; a full independent audit of 1.0.1 (299 recorded
+> checks) followed, and its defects were remediated in 1.0.2. Verification evidence for the
+> current release lives in `agent-trials/` and `oracle-sweep.json` beside this file, produced
+> from the 1.0.2 code.
 
 **Reviewer:** independent subagent (different model route from the implementer), read-only, 2026-11-09.
-**Full trace:** `/home/barry/.hermes/cache/delegation/live/deleg_809f5e36/task-0.log`
+**Full trace:** retained in the project workspace (not in this repository).
 
 ## Verdict: CONDITIONAL-PASS
 
