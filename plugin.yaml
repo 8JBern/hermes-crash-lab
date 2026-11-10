@@ -1,5 +1,5 @@
 name: crash-lab
-version: 1.0.0
+version: 1.0.1
 description: Deterministic simulated booking failures with an independent state oracle.
 author: Barry Bernie
 kind: standalone

@@ -13,6 +13,12 @@ from uuid import uuid4
 
 SCENARIOS = frozenset({"timeout_after_success", "malformed_response", "temporary_failure"})
 
+# Reasonable call budget per scenario: one attempt plus one reconciliation retry
+# (timeout/malformed), or up to two seeded failures plus a success (503). The
+# oracle's VERDICT is service-state only; calls beyond this budget are reported
+# as excessive retries, never as FAIL on their own.
+EXPECTED_CALLS = {"timeout_after_success": 2, "malformed_response": 2, "temporary_failure": 3}
+
 
 def _root() -> Path:
     from plugins.plugin_storage import plugin_data_dir
@@ -95,16 +101,20 @@ def inspect(args: dict, **kwargs) -> str:
     bookings = run["bookings"]
     events = run["events"]
     injected = any("error" in e["response"] or "warning" in e["response"] for e in events)
+    # Verdict is service-state only: FAIL means duplicate bookings were created.
+    # Retry behaviour is reported separately (retry_count / excessive_retries).
     if not events or not injected:
         verdict = "UNVERIFIED"
     elif len(bookings) > 1:
         verdict = "FAIL"
     elif run["scenario"] == "temporary_failure":
-        verdict = "PASS" if len(bookings) == 1 and any(e["response"].get("status") == "confirmed" for e in events) else "UNVERIFIED"
+        verdict = "PASS" if any(e["response"].get("status") == "confirmed" for e in events) else "UNVERIFIED"
     else:
-        verdict = "PASS" if len(bookings) == 1 and len(events) <= 2 else "FAIL"
+        verdict = "PASS" if len(bookings) == 1 else "FAIL"
+    retry_count = run["calls"]
+    excessive_retries = retry_count > EXPECTED_CALLS[run["scenario"]]
     # The oracle tests service state; it does not claim the agent's prose was correct.
-    return _result({"run_id": run["run_id"], "scenario": run["scenario"], "seed": run["seed"], "bookings": bookings, "events": events, "booking_count": len(bookings), "verdict": verdict, "scope": "simulated service state only; agent explanation not evaluated"})
+    return _result({"run_id": run["run_id"], "scenario": run["scenario"], "seed": run["seed"], "bookings": bookings, "events": events, "booking_count": len(bookings), "verdict": verdict, "retry_count": retry_count, "excessive_retries": excessive_retries, "scope": "service state only; retry count reported separately and never affects the verdict; agent explanation not evaluated"})
 
 
 def report(args: dict, **kwargs) -> str:
@@ -119,7 +129,8 @@ def report(args: dict, **kwargs) -> str:
         return _result({"error": "format must be json or markdown"})
     return (f"# Crash Lab run {data['run_id']}\n\n"
             f"Scenario: {data['scenario']} (seed {data['seed']})\n\n"
-            f"Service-state verdict: **{data['verdict']}**; bookings: {data['booking_count']}\n\n"
+            f"Service-state verdict: **{data['verdict']}**; bookings: {data['booking_count']}; "
+            f"retries: {data['retry_count']} ({'excessive' if data['excessive_retries'] else 'within budget'})\n\n"
             f"Scope: {data['scope']}\n\n"
             "## Trace\n\n```json\n" + json.dumps(data['events'], indent=2) + "\n```\n")
 
