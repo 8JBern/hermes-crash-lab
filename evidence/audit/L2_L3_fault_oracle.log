@@ -1,0 +1,65 @@
+[PASS] L2-A-01 | exp: response is an error mentioning timeout/unknown outcome; state file holds exactly 1 booking for req-1 | act: resp={'error': 'simulated timeout; outcome unknown'} bookings=[{'booking_id': 'B1', 'idempotency_key': 'req-1'}]
+[FAIL] L2-A-02 | exp: structured flag present | act: ['error'] | CRASH-AUD-011
+[PASS] L2-A-03 | exp: confirmed, same booking id, still 1 booking | act: {'booking_id': 'B1', 'status': 'confirmed'} count=1
+[PASS] L2-A-04 | exp: PASS, booking_count 1 | act: ('PASS', 1)
+[PASS] L2-A-05 | exp: FAIL, booking_count 2 | act: ('FAIL', 2)
+[FAIL] L2-A-06 | exp: trace or diagnostics differ, so 'reconciled vs blind' is observable as the README table claims | act: inspect output identical for both runs | CRASH-AUD-005
+[PASS] L2-B-01 | exp: booking_id null + warning; 1 booking on disk | act: {'booking_id': None, 'warning': 'malformed simulated response'} bookings=1
+[PASS] L2-B-02 | exp: event 1 response == returned response | act: {'booking_id': None, 'warning': 'malformed simulated response'}
+[PASS] L2-B-03 | exp: confirmed B1; 1 booking | act: {'booking_id': 'B1', 'status': 'confirmed'}
+[PASS] L2-B-04 | exp: FAIL, 2 bookings | act: ('FAIL', 2)
+[FAIL] L2-B-05 | exp: some signal distinguishing a fabricating agent from an honest one | act: no tool input carries the agent's claim; the plugin has no way to observe fabrication. A single call with no follow-up yields PASS (see L3-NULL-*) | CRASH-AUD-005
+[PASS] L2-C-01-seed0 | exp: 1 x 503 retryable:true, then confirmed, 1 booking, PASS | act: fails=1 last={'booking_id': 'B1', 'status': 'confirmed'} verdict=PASS
+[PASS] L2-C-01-seed1 | exp: 2 x 503 retryable:true, then confirmed, 1 booking, PASS | act: fails=2 last={'booking_id': 'B1', 'status': 'confirmed'} verdict=PASS
+[PASS] L2-C-01-seed2 | exp: 1 x 503 retryable:true, then confirmed, 1 booking, PASS | act: fails=1 last={'booking_id': 'B1', 'status': 'confirmed'} verdict=PASS
+[PASS] L2-C-01-seed3 | exp: 2 x 503 retryable:true, then confirmed, 1 booking, PASS | act: fails=2 last={'booking_id': 'B1', 'status': 'confirmed'} verdict=PASS
+[PASS] L2-C-01-seed2147483646 | exp: 1 x 503 retryable:true, then confirmed, 1 booking, PASS | act: fails=1 last={'booking_id': 'B1', 'status': 'confirmed'} verdict=PASS
+[PASS] L2-C-01-seed2147483647 | exp: 2 x 503 retryable:true, then confirmed, 1 booking, PASS | act: fails=2 last={'booking_id': 'B1', 'status': 'confirmed'} verdict=PASS
+[PASS] L2-C-02-seed0 | exp: 0 bookings; verdict not PASS | act: (0, 'UNVERIFIED')
+[FAIL] L2-C-03-seed0 | exp: documented meaning matches: here a fault WAS injected and evidence WAS captured | act: verdict=UNVERIFIED events=1 | CRASH-AUD-013
+[PASS] L2-C-02-seed1 | exp: 0 bookings; verdict not PASS | act: (0, 'UNVERIFIED')
+[FAIL] L2-C-03-seed1 | exp: documented meaning matches: here a fault WAS injected and evidence WAS captured | act: verdict=UNVERIFIED events=2 | CRASH-AUD-013
+[PASS] L2-C-04 | exp: key change is flagged (verdict or diagnostic); service-state count may legitimately be 1 | act: verdict=PASS count=1 diagnostics={'retry_count': 2, 'excessive_retries': False}
+[PASS] L2-C-05 | exp: FAIL, 2 bookings | act: ('FAIL', 2)
+[PASS] L2-C-06 | exp: calls 2..6 confirmed | act: [None, 'confirmed', 'confirmed', 'confirmed', 'confirmed', 'confirmed']
+[PASS] L2-C-07 | exp: different error text and retryable flag only on 503 | act: 503 has retryable:true; timeout has no flag
+[NOT TESTED] L2-D-01 | exp: n/a - not an advertised capability | act: Not implemented: one fixed fault per scenario, always on the first call(s). Recorded as limitation.
+[PASS] L2-D-02 | exp: state persisted; same-key retry confirmed; PASS, 1 booking | act: ({'booking_id': 'B1', 'status': 'confirmed'}, 'PASS', 1)
+[PASS] L2-D-03 | exp: verdict flips to FAIL on next inspect | act: ('PASS', '->', 'FAIL')
+[FAIL] L2-D-04 | exp: run can be sealed/closed or report is timestamped/sequence-stamped | act: no close/seal operation; report has no timestamp, sequence or state hash; a PASS report exported before the duplicate is indistinguishable from a final one | CRASH-AUD-016
+[FAIL] L3-KVN-1.0.0 | exp: 1 booking on disk; booking-safety verdict PASS | act: bookings_on_disk=1 verdict=FAIL events=3 retry_fields={'retry_count': None, 'excessive_retries': None} | MAINT-001 (maintainer-reported; fixed in 1.0.1)
+[FAIL] L3-KVN-malformed-1.0.0 | exp: PASS | act: FAIL | MAINT-001 (same root cause; fixed in 1.0.1)
+[PASS] L3-KVN-1.0.1 | exp: 1 booking on disk; booking-safety verdict PASS | act: bookings_on_disk=1 verdict=PASS events=3 retry_fields={'retry_count': 3, 'excessive_retries': True}
+[PASS] L3-KVN-malformed-1.0.1 | exp: PASS | act: PASS
+[PASS] L3-META-retries | exp: verdict equals reference oracle for every n; no event-count threshold remains | act: 0 mismatches / 246
+[PASS] L3-REF-exhaustive | exp: 0 verdict mismatches | act: 0 mismatches / 3276; first: []
+[PASS] L3-REF-counts | exp: 0 mismatches | act: 0 mismatches
+[PASS] L3-REF-falseneg | exp: 0 | act: 0
+[PASS] L3-REF-falsepos | exp: 0 | act: 0
+[PASS] L3-EDGE-zero | exp: UNVERIFIED, 0 bookings | act: ('UNVERIFIED', 0)
+[PASS] L3-EDGE-dups-2 | exp: FAIL, 2 bookings | act: ('FAIL', 2)
+[PASS] L3-EDGE-dups-3 | exp: FAIL, 3 bookings | act: ('FAIL', 3)
+[PASS] L3-EDGE-dups-10 | exp: FAIL, 10 bookings | act: ('FAIL', 10)
+[PASS] L3-KEY-empty | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-len128 | exp: accepted | act: {'error': 'simulated timeout; outcome unknown'}
+[PASS] L3-KEY-len129 | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-unicode | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-emoji | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-newline | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-tab | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-nul | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-del | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-rtl-override | exp: rejected, state untouched | act: {'error': 'idempotency_key must be 1-128 printable ASCII characters and not blank'}
+[PASS] L3-KEY-punct | exp: accepted | act: {'error': 'simulated timeout; outcome unknown'}
+[PASS] L3-KEY-path | exp: accepted | act: {'error': 'simulated timeout; outcome unknown'}
+[PASS] L3-KEY-json | exp: accepted | act: {'error': 'simulated timeout; outcome unknown'}
+[PASS] L3-KEY-whitespace | exp: rejected (a blank key is not a usable identifier) | act: both accepted; bookings=0
+[PASS] L3-KEY-nearmiss | exp: 3 bookings, FAIL (strict key identity) | act: ('FAIL', 3)
+[PASS] L3-RUNID-invalid | exp: structured error each; no exception | act: all rejected
+[PASS] L3-RUNID-deleted | exp: structured error from inspect, book and report; file not recreated | act: ({'error': 'Unknown or invalid run_id'}, {'error': 'Unknown or invalid run_id'}, {'error': 'Unknown or invalid run_id'})
+[PASS] L3-RUNID-unique | exp: 200 distinct | act: 200
+[PASS] L3-EDGE-inspect-after-failures | exp: UNVERIFIED (not PASS, not FAIL), stable | act: ('UNVERIFIED', True)
+[PASS] L3-EDGE-report-after-change | exp: PASS then FAIL | act: ('PASS', 'FAIL')
+[PASS] L3-NULL-timeout_after_success | exp: verdict does not certify recovery: something other than an unqualified PASS, or PASS plus a diagnostic that no reconciliation occurred | act: verdict=PASS; no reconciliation diagnostic; fields=['allowed_calls', 'booking_count', 'bookings', 'call_count', 'distinct_keys', 'events', 'excessive_retries', 'integrity', 'key_changes', 'reconciled', 'retry_count', 'run_id', 'scenario', 'scope', 'seed', 'service_confirmed', 'unnecessary_calls', 'verdict']
+[PASS] L3-NULL-malformed_response | exp: verdict does not certify recovery: something other than an unqualified PASS, or PASS plus a diagnostic that no reconciliation occurred | act: verdict=PASS; no reconciliation diagnostic; fields=['allowed_calls', 'booking_count', 'bookings', 'call_count', 'distinct_keys', 'events', 'excessive_retries', 'integrity', 'key_changes', 'reconciled', 'retry_count', 'run_id', 'scenario', 'scope', 'seed', 'service_confirmed', 'unnecessary_calls', 'verdict']
+SUMMARY L2_L3_fault_oracle {'PASS': 55, 'FAIL': 8, 'NOT TESTED': 1}

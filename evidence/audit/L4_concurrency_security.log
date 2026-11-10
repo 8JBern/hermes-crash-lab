@@ -1,0 +1,25 @@
+example false PASS: null
+[PASS] L4-RACE-diffkeys-2proc | exp: every trial: 2 bookings, verdict FAIL (two distinct keys were accepted by the service) | act: false PASS (verdict PASS, 1 booking, both callers answered) in 0/150 trials; lost event in 0; both callers received the 'first call' timeout in 0; exceptions=0
+[PASS] L4-RACE-samekey-bookings | exp: exactly 1 booking in every trial | act: 0/30 trials with booking count != 1
+[PASS] L4-RACE-samekey-history | exp: 40 events, calls=40 in every trial | act: 0/30 trials lost events/calls (worst: None of 40 recorded)
+[PASS] L4-RACE-diffkeys-6proc | exp: 6 bookings and FAIL every trial | act: under-count in 0/30; verdict PASS in 0/30; same booking_id issued to two different keys in 0/30
+[PASS] L4-RACE-readers | exp: no torn/partial reads, no errors (atomic rename) | act: 0 reader errors
+[PASS] L4-RACE-independent-runs | exp: each run: 20 events, 1 booking, own key only | act: (20, [{'booking_id': 'B1', 'idempotency_key': 'x'}], 20, [{'booking_id': 'B1', 'idempotency_key': 'y'}])
+[NOT TESTED] L4-RACE-windows | exp: no PermissionError / lost state | act: No Windows host available.
+imports: ['__future__', 'fcntl', 'json', 'os', 'pathlib', 'plugins.plugin_storage', 'time', 'uuid']
+call targets: ["', '.join", 'FileNotFoundError', 'TimeoutError', 'ValueError', '_Corrupt', '_RunLock', '_apply', '_diagnostics', '_error', '_failures', '_load', '_new_run', '_path', '_path(run_id).with_suffix', '_read', '_result', '_root', '_root().glob', '_save', '_sweep_tmp', '_valid_id', '_valid_key', '_verify', 'all', 'any', 'args.get', 'ctx.register_tool', "e['response'].get", 'event.get', 'fcntl.flock', 'frozenset', 'handle.fileno', 'handle.flush', 'handler', 'inspect', 'isinstance', 'json.dump', 'json.dumps', 'json.loads', 'key.isascii', 'key.isprintable', 'key.strip', 'keys.append', 'len', 'max', 'next', 'os.close', 'os.fsync', 'os.open', 'os.replace', 'out.update', 'path.exists', 'path.is_file', 'path.is_symlink', 'path.parent.mkdir', 'path.read_text', 'path.stat', 'path.with_name', 'plugin_data_dir', "run['bookings'].append", "run['events'].append", 'self.path.parent.mkdir', 'self.path.unlink', 'set', 'sorted', 'stale.stat', 'stale.unlink', 'str', 'sum', 'time.monotonic', 'time.sleep', 'time.time', 'tmp.open', 'tmp.unlink', 'type', 'uuid4', 'zip']
+[FAIL] L4-SEC-static | exp: stdlib json/os/pathlib/uuid + Hermes plugin_storage only; no eval/exec/subprocess/network/pickle | act: imports=['__future__', 'fcntl', 'json', 'os', 'pathlib', 'plugins.plugin_storage', 'time', 'uuid']; dangerous=[]
+[PASS] L4-SEC-network | exp: 0 socket creation attempts | act: 0
+[FAIL] L4-SEC-footprint | exp: only runs/<32hex>.json | act: ['runs/8da50766049b4622882b11bd00623755.lock', 'runs/9b07a2bdfd984a038ee5a26fdb12d52a.lock', 'runs/c3cdbc6f195e41fa80f434f7d2f88ac7.lock']
+[PASS] L4-SEC-traversal | exp: all rejected; canary outside runs/ unread and unmodified | act: rejected=30/30; canary intact=True
+[PASS] L4-SEC-symlink-read | exp: symlinked run files are refused (O_NOFOLLOW / is_symlink check) | act: content of outside file returned to caller=False
+[PASS] L4-SEC-symlink-write | exp: file outside runs/ is not modified | act: outside file intact=True; link replaced by regular file=False
+[PASS] L4-SEC-perms | exp: owner-only (0600/0700) would be the conservative choice; README makes no claim | act: file 0o664, dir 0o775 - inherits umask; relies on Hermes home being 0700 (observed 0700 on the disposable profile)
+[PASS] L4-SEC-disclosure | exp: none | act: none found
+[PASS] L4-SEC-md-injection | exp: key text stays inside the JSON code fence (exactly 2 fence lines); header verdict unaffected | act: fence lines=2; header verdict=FAIL
+scale (calls, seconds for this segment, state bytes, inspect output chars): [(250, 1.13, 65989, 53307), (500, 1.14, 131739, 106057), (1000, 0.71, 131739, 106057), (2000, 1.45, 131739, 106057), (4000, 2.95, 131739, 106057)]
+[FAIL] L4-DOS-event-growth | exp: bounded state/output: event history capped or summarised | act: state file 131,739 bytes; inspect output 106,057 chars; per-call cost grew 0.3x from first 250 to last 2,000 calls; verdict still PASS | CRASH-AUD-010
+[FAIL] L4-DOS-run-count | exp: a cap, TTL or cleanup tool limits accumulated runs | act: 3,000 files created in 12.6s; no limit, no list/delete/cleanup tool | CRASH-AUD-010
+[PASS] L4-DOS-report-repeat | exp: stable output, no state growth | act: 1 distinct outputs in 0.19s
+peak RSS (KB): 29272
+SUMMARY L4_concurrency_security {'PASS': 14, 'NOT TESTED': 1, 'FAIL': 4}

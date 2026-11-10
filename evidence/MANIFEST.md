@@ -29,8 +29,8 @@ the booking-safety verdict.
 ## Independent audit
 
 The 1.0.1 code was independently audited (299 recorded checks) and the defects were
-remediated in 1.0.2. The audit's own harness was re-executed against this code with
-these results (details in the release notes):
+remediated in 1.0.2. The audit's own harness and the recorded results of re-executing it
+against the 1.0.2 code are included beside this file in `audit/` (see `audit/README.md`).
 
 - Two-writer distinct-key race: 150/150 trials correct (2 bookings, FAIL, no lost events).
 - Eight-writer same-key: 40/40 events recorded in every trial.

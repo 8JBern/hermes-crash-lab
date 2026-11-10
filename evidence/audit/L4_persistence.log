@@ -1,0 +1,56 @@
+[PASS] L4-CORRUPT-missing-file | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'error', 'book': 'error', 'report': 'error'}
+[PASS] L4-CORRUPT-empty | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-truncated | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-malformed | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-json-null | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-json-list | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-json-string | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-json-number | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-empty-object | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-binary | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-bom | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-nan | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-CORRUPT-huge-nesting | exp: inspect/book/report each return a structured error; no exception; no PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-missing-run_id | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-missing-scenario | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-missing-seed | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-missing-events | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-missing-bookings | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-missing-calls | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-calls-str | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-calls-null | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-calls-float | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-calls-negative | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-bookings-dict | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-bookings-null | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-bookings-strs | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-events-null | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-events-strs | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-event-no-response | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-event-response-str | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-scenario-unknown | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-scenario-null | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-seed-str | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-SCHEMA-booking-no-key | exp: structured error (or conservative non-PASS verdict); no exception; never PASS | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[PASS] L4-FORGE-tf-confirmed-but-zero-bookings | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-tf-confirmed-but-zero-bookings-1.0.0 | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=0
+[PASS] L4-FORGE-to-two-keys-confirmed-one-booking | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-to-duplicate-bookings-events-erased | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-to-same-key-booked-twice | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-to-booking-key-not-in-events | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-to-calls-disagrees-with-events | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-to-events-reordered | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-to-duplicate-event-numbers | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-tf-first-call-confirmed-no-503 | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-mr-scenario-swapped-to-tf-history | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[PASS] L4-FORGE-to-forged-confirmation-wrong-id | exp: never PASS (error, UNVERIFIED or FAIL) | act: verdict=UNVERIFIED booking_count=None
+[FAIL] L4-FORGE-dups-must-fail | exp: FAIL (duplicates are the damage case regardless of history) | act: UNVERIFIED | CRASH-AUD-002
+[PASS] L4-FORGE-runid-mismatch | exp: rejected; run B's file untouched | act: book->{'error': 'Run state failed integrity verification: run_id does not match file', 'integrity': 'failed', 'run_id': 'a754b2db2b09489e8e462e21c5ee6957', 'verdict': 'UNVERIFIED'}; run B file changed=False; B now holds keys ['victim']
+[PASS] L4-FORGE-runid-traversal | exp: structured error; nothing written outside runs/ | act: {'error': 'Run state failed integrity verification: run_id does not match file', 'integrity': 'failed', 'run_id': 'a754b2db2b09489e8e462e21c5ee6957', 'verdict': 'UNVERIFIED'}; files outside runs: []
+[FAIL] L4-WRITE-replace-fails | exp: previous state intact; no .tmp left; caller gets a structured error | act: state intact=True; files=['bedfecdd9f74447c8595aa0b0d842c20.json', 'bedfecdd9f74447c8595aa0b0d842c20.lock']; result={'error': 'Crash Lab storage error: OSError'} | CRASH-AUD-003
+[PASS] L4-WRITE-hardkill-state | exp: previous committed state intact and readable | act: rc=9 intact=True verdict=PASS
+[FAIL] L4-WRITE-hardkill-litter | exp: no orphan .tmp, or orphans are cleaned on next write/start | act: orphans=1; after next book: 1 | CRASH-AUD-015
+[PASS] L4-RESTART-cycles | exp: 503, 503, confirmed; PASS; 1 booking | act: (['503', '503', 'confirmed'], 'PASS', 1)
+[PASS] L4-CORRUPT-dir-in-place | exp: structured error; no exception | act: {'inspect': 'UNVERIFIED', 'book': 'UNVERIFIED', 'report': 'error'}
+[NOT TESTED] L4-CORRUPT-permission-denied | exp: structured error | act: Container runs as root, which bypasses file modes; cannot be exercised here. By inspection, PermissionError is not in the caught tuple at __init__.py:70 and :99. | CRASH-AUD-003
+SUMMARY L4_persistence {'PASS': 51, 'FAIL': 3, 'NOT TESTED': 1}

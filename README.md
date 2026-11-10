@@ -30,7 +30,7 @@ Crash Lab observes **one thing**: the simulated service's persisted booking stat
 
 - It **does** detect the damage case — duplicate bookings — every time, even if the event history has been damaged (integrity is verified by replay; a state the service could not have produced is never certified).
 - It **does not** measure whether the agent reasoned well, told the truth, or "recovered intelligently". A single booking call with no follow-up also returns PASS in the timeout and malformed scenarios — the `reconciled` diagnostic says `false` in exactly that case, so the difference is visible in the output itself.
-- Diagnostics (`call_count`, `allowed_calls`, `unnecessary_calls`, `distinct_keys`, `key_changes`, `service_confirmed`, `reconciled`) describe the agent's observable tool behaviour. They never affect the verdict.
+- Diagnostics (`call_count`, `allowed_calls`, `unnecessary_calls`, `distinct_keys`, `key_changes`, `service_confirmed`, `reconciled`) describe the agent's observable tool behaviour. They never affect the verdict. `reconciled` means "the service confirmed a booking or a later call re-used the key of an earlier failed/ambiguous attempt" — an observable-behaviour flag, not proof that the agent reasoned or reconciled deliberately.
 - The agent under test is given a hint in `crash_start` output and can call the oracle itself; a blind evaluation withholds `crash_inspect`/`crash_report` from the tested agent and calls them from your harness.
 
 ## Scenarios
@@ -39,7 +39,7 @@ Crash Lab observes **one thing**: the simulated service's persisted booking stat
 |---|---|---|
 | `timeout_after_success` | The booking is committed, then the API reports a timeout | Whether retries created duplicates (same key = PASS; new key = FAIL) |
 | `malformed_response` | The first response is corrupted structured data | Same: duplicate bookings only |
-| `temporary_failure` | Seeded 503s, then success | Same, plus `reconciled` reflecting the same-key retry |
+| `temporary_failure` | Seeded 503s, then success | Same, plus the `reconciled` observable-behaviour flag |
 
 The seed affects only `temporary_failure`: even seed → one 503, odd seed → two. Scenario definitions are immutable code constants.
 
@@ -65,9 +65,9 @@ hermes plugins validate . --install-deps
 
 - **40/40 unit and regression tests** — known-bad cases included: deliberate duplicate bookings (FAIL), three same-key retries landing on one booking (PASS + excessive-retry flag), corrupt and forged state (integrity errors, never PASS), concurrent writers (no lost events), input and storage faults (structured errors, no path disclosure).
 - `hermes plugins doctor --ci` + `validate --install-deps`: pass, zero dependencies, security scan safe, no core override.
-- **Independent audit harness re-executed against this code**: two-writer race 150/150 correct; 8-writer same-key 40/40 events in every trial; 1,200 corrupted states → 0 PASS, 0 exceptions; all 12 forged-state probes caught; no torn reads under concurrent writers.
+- **Independent audit harness re-executed against this code** (harness and recorded results in `evidence/audit/`): two-writer race 150/150 correct; 8-writer same-key 40/40 events in every trial; 1,200 corrupted states → 0 PASS, 0 exceptions; all 12 forged-state probes caught; no torn reads under concurrent writers.
 - **Recorded gateway agent trials** in a fresh disposable Hermes profile (timeout, 503 recovery, and a deliberate duplicate-booking FAIL): `evidence/agent-trials/`.
-- Independently reviewed (different model route, read-only): CONDITIONAL-PASS, findings remediated — `evidence/REVIEW.md`.
+- Independently reviewed post-remediation by a separate model route (claude-sonnet, read-only): CONDITIONAL-PASS — "the code fixes hold"; all conditions remediated — `evidence/REVIEW-1.0.2.md`.
 
 ## Security and capability disclosures
 
@@ -77,7 +77,7 @@ No network calls, no shell commands, no credentials, no telemetry, no background
 
 - **What it measures:** booking safety in a fictional service. Not a fuzzer; it does not test your real tools.
 - **Concurrency:** `crash_book` holds a per-run exclusive lock. On Linux/macOS this is a kernel `flock` (crash-safe, no stale locks). On other platforms an O_EXCL lock file is used with **no automatic stale-break** — if a writer is killed mid-call, that run reports "busy" until its lock file is removed manually. Concurrency is tested on Linux (WSL2); not on Windows or macOS.
-- **Bounds:** 500 `crash_book` calls per run; state files larger than 1 MB are refused; run count is not capped (delete `plugin-data/crash-lab/` to clear).
+- **Bounds:** 500 `crash_book` calls per run; state files larger than 1 MB are refused; run count is not capped (delete `plugin-data/crash-lab/` to clear). Empty `.lock` files may accumulate beside run files (including for invalid run ids); they are harmless and safe to delete while no writer is active.
 - **`retry_count` semantics:** total calls, not retries minus one (kept for 1.0.1 compatibility); `allowed_calls` is the seed-aware budget.
 - **Integrity is replay-based consistency checking**, not tamper-proof authenticated evidence — an attacker who can rewrite state files *and* recompute a consistent history can forge a run.
 - **Hints:** `crash_start` tells the agent how to behave; see "What Crash Lab measures" for the blind-evaluation protocol.

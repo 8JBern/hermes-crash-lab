@@ -40,9 +40,9 @@ maintainer review on catalogue PR #151695.
   `.tmp` sweep on `crash_start` and `crash_book`.
 - `reconciled` diagnostic (with `service_confirmed` and the other diagnostics) making
   the "PASS for a single unreconciled call" fact visible in the output itself.
-- 29 audit regression tests plus 6 remediation tests (40 total), including concurrency
-  (no lost events under 2/6/8 writers), corruption fuzz, forged state, boundary and
-  mutation-targeted cases.
+- 25 audit regression tests plus 6 remediation tests alongside the 9 original tests
+  (40 total), including concurrency (no lost events under 2/6/8 writers), corruption
+  fuzz, forged state, boundary and mutation-targeted cases.
 
 ### Documentation
 

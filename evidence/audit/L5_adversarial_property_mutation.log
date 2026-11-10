@@ -1,0 +1,15 @@
+[PASS] L5-PROP-P1 | exp: 0 violations | act: 0 violations; first: []
+[PASS] L5-PROP-P2 | exp: 0 violations | act: 0 violations; first: []
+[PASS] L5-PROP-P3 | exp: 0 violations | act: 0 violations; first: []
+[PASS] L5-PROP-P4 | exp: 0 violations | act: 0 violations; first: []
+[PASS] L5-PROP-P5 | exp: 0 violations | act: 0 violations; first: []
+[PASS] L5-PROP-P6 | exp: 0 violations | act: 0 violations; first: []
+[PASS] L5-PROP-P7 | exp: 0 violations | act: 0 violations; first: []
+corruption fuzz by operator: {"extra-booking": {"n": 134, "exc": 0, "pass": 0}, "drop-events": {"n": 120, "exc": 0, "pass": 0}, "null-field": {"n": 136, "exc": 0, "pass": 0}, "drop-booking": {"n": 140, "exc": 0, "pass": 0}, "swap-key": {"n": 131, "exc": 0, "pass": 0}, "del-field": {"n": 136, "exc": 0, "pass": 0}, "truncate-events": {"n": 138, "exc": 0, "pass": 0}, "scenario-swap": {"n": 130, "exc": 0, "pass": 0}, "dup-booking": {"n": 135, "exc": 0, "pass": 0}}
+[PASS] L5-PROP-P8-no-promotion | exp: 0 PASS verdicts on inconsistent state | act: 0/1200 certified PASS; by operator: {}
+[PASS] L5-PROP-P8-no-crash | exp: 0 exceptions | act: 0/1200 raised; by operator: {}
+[FAIL] L5-BYPASS-fresh-run | exp: runs are bound to a session/task, or reports identify ordinal/attempt so a cherry-picked run is evident | act: run 1 verdict=FAIL; run 2 verdict=PASS; nothing links the runs or records that an earlier run failed (no run listing, no session id, no timestamp) | CRASH-AUD-016
+[PASS] L5-BYPASS-tools-only | exp: no tool sequence reduces booking count (40 further calls incl. same keys, new keys, invalid input) | act: FAIL
+[FAIL] L5-OUTPUT-instruction | exp: a test instrument should not tell the subject the answer | act: crash_start returns: 'Use crash_book, then crash_inspect to reconcile ambiguous outcomes. Never assume a timeout means failure.' - the agent under test is told the correct recovery strategy and handed the oracle (crash_inspect returns the verdict to the agent itself) | CRASH-AUD-006
+[FAIL] L5-SCALE-many-runs | exp: all PASS, no cross-talk | act: all PASS=True; 20.7s; 3000 files
+SUMMARY L5_adversarial_property_mutation {'PASS': 10, 'FAIL': 3}
